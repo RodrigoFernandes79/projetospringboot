@@ -3,28 +3,43 @@ package com.rodrigofernandes.projetospringboot.resource;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rodrigofernandes.projetospringboot.domain.Categoria;
+import com.rodrigofernandes.projetospringboot.service.CategoriaService;
 
 @RestController
 @RequestMapping("/categorias") // localhost:8080/categorias
 public class CategoriaResource {
 	
+	@Autowired
+	private CategoriaService service;
+	
+	@PostMapping
+	private  ResponseEntity<List<Categoria>> createCategoria() {
+	
+	return ResponseEntity.ok().body(service.createCategoria());
+	
+	}
 	@GetMapping
-	public List<Categoria>  listAll(){
-		Categoria c1 = new Categoria(1L, "Informática");
-		Categoria c2 = new Categoria(2L, "Escritório");
-		List<Categoria> lista  =new ArrayList<>();
-		lista.add(c1);
-		lista.add(c2);
-		return  lista;
+	public ResponseEntity<List<Categoria>>  listarTudo(){
 		
+		return  ResponseEntity.ok().body(service.listarTudo());
+	}
+		
+		@GetMapping("/{id}") 
+		ResponseEntity<Object> buscarPorId(@PathVariable long id){
+			return ResponseEntity.ok().body(service.buscarPorId(id));
+		
+		}
 		
 		
 	}
 
-}
+
