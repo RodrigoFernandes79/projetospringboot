@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rodrigofernandes.projetospringboot.domain.Categoria;
 
 @RestController
-@RequestMapping("/categorias")
+@RequestMapping("/categorias") // localhost:8080/categorias
 public class CategoriaResource {
 	
 	@GetMapping
