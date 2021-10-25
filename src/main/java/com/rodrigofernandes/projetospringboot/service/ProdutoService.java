@@ -18,6 +18,11 @@ public class ProdutoService {
 	@Autowired
 	private ProdutoRepository repository;
 
+	public List<Produto> listarProdutos() {
+		List<Produto> obj = repository.findAll();
+		return obj;
+	}
+
 	
 
 }
