@@ -21,12 +21,7 @@ public class CategoriaResource {
 	@Autowired
 	private CategoriaService service;
 	
-	@PostMapping
-	private  ResponseEntity<List<Categoria>> createCategoria() {
 	
-	return ResponseEntity.ok().body(service.createCategoria());
-	
-	}
 	@GetMapping
 	public ResponseEntity<List<Categoria>>  listarTudo(){
 		
