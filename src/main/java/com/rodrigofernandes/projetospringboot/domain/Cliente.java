@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.rodrigofernandes.projetospringboot.domain.enumerate.TipoCliente;
 
 @Entity
@@ -33,9 +34,11 @@ public class Cliente implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private TipoCliente tipo;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy="cliente")
 	private Set<Telefone> telefones  = new HashSet<>();
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy="cliente")
 	private List<Endereco> enderecos =new ArrayList<>();
 	
@@ -112,6 +115,16 @@ public class Cliente implements Serializable {
 
 	public void setTelefones(Set<Telefone> telefones) {
 		this.telefones = telefones;
+	}
+
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
 	
 	

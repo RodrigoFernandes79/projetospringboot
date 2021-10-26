@@ -108,13 +108,17 @@ public class DemoApplication implements CommandLineRunner {
 		
 		
 		
-		clientRepository.saveAll(Arrays.asList(cli1));
-		telRepository.saveAll(Arrays.asList(t1,t2));
+		
 		
 		Endereco e1 = new Endereco(null, "Rua Flores","300","Apto 203","Jardim","38220834", cli1, cd1);
 		Endereco e2 = new Endereco(null, "Avenida Matos","105","sala 800","Centro","38777012", cli1, cd2);
 		
+		cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
+		
+		clientRepository.saveAll(Arrays.asList(cli1));
+			
 		endRepository.saveAll(Arrays.asList(e1,e2));
+		telRepository.saveAll(Arrays.asList(t1,t2));
 	}
 
 }
